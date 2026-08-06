@@ -1,0 +1,365 @@
+/*==========================================
+    STYLE EXTENSION
+    NovaShop Premium UI
+==========================================*/
+
+/*==============================
+    LOADER
+==============================*/
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#ffffff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+    transition:.6s;
+
+}
+
+.loader-content{
+
+    text-align:center;
+
+}
+
+.loader-circle{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    border:8px solid #ececec;
+
+    border-top:8px solid var(--primary);
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+}
+
+.loader-content h1{
+
+    font-family:"Outfit";
+
+    font-size:2.4rem;
+
+    color:var(--primary);
+
+}
+
+.loader-content p{
+
+    color:var(--gray);
+
+    margin-top:10px;
+
+}
+
+/*==============================
+    BACK TO TOP
+==============================*/
+
+#backToTop{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent));
+
+    color:white;
+
+    font-size:1.5rem;
+
+    cursor:pointer;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.2);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:1000;
+
+}
+
+#backToTop.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+#backToTop:hover{
+
+    transform:translateY(-8px);
+
+}
+
+/*==============================
+    NAV ICON BUTTONS
+==============================*/
+
+.nav-icons button{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    position:relative;
+
+    box-shadow:var(--shadow);
+
+}
+
+.nav-icons button:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+    transform:translateY(-5px);
+
+}
+
+/*==============================
+    BADGES
+==============================*/
+
+.icon-badge span{
+
+    position:absolute;
+
+    top:-6px;
+
+    right:-6px;
+
+    width:22px;
+
+    height:22px;
+
+    border-radius:50%;
+
+    background:#ff4757;
+
+    color:white;
+
+    font-size:.7rem;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:600;
+
+}
+
+/*==============================
+    HERO STATS
+==============================*/
+
+.hero-stats{
+
+    display:flex;
+
+    gap:35px;
+
+    margin-top:45px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-stats div{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    min-width:120px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.hero-stats div:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.hero-stats h2{
+
+    color:var(--primary);
+
+    font-family:"Outfit";
+
+    margin-bottom:8px;
+
+}
+
+.hero-stats span{
+
+    color:var(--gray);
+
+    font-size:.9rem;
+
+}
+
+/*==============================
+    PRODUCT CATEGORY
+==============================*/
+
+.product-category{
+
+    display:inline-block;
+
+    color:var(--primary);
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+/*==============================
+    PRODUCT RATING
+==============================*/
+
+.rating{
+
+    color:#FFD43B;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+}
+
+/*==============================
+    PRODUCT BUTTONS
+==============================*/
+
+.product-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.product-buttons button:first-child{
+
+    flex:1;
+
+}
+
+.quick-view{
+
+    width:56px;
+
+    border-radius:15px;
+
+    background:var(--dark);
+
+    color:white;
+
+    transition:.35s;
+
+}
+
+.quick-view:hover{
+
+    background:var(--accent);
+
+}
+
+/*==============================
+    TESTIMONIAL GRID
+==============================*/
+
+.testimonial-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:35px;
+
+}
+
+.testimonial-card span{
+
+    color:var(--gray);
+
+    font-size:.9rem;
+
+}

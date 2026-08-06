@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="NovaShop - Premium Modern E-commerce Website">
+
+    <title>NovaShop | Premium Shopping Experience</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Remix Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+<body>
+
+<!--==========================
+    LOADING SCREEN
+===========================-->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-circle"></div>
+
+        <h1>NovaShop</h1>
+
+        <p>Loading Amazing Products...</p>
+
+    </div>
+
+</div>
+
+<!--==========================
+    BACK TO TOP
+===========================-->
+
+<button id="backToTop">
+
+    <i class="ri-arrow-up-line"></i>
+
+</button>
+
+<!--==========================
+    TOAST CONTAINER
+===========================-->
+
+<div id="toastContainer"></div>
+
+<!--==========================
+    HEADER
+===========================-->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            NovaShop
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="#home">Home</a></li>
+
+            <li><a href="#categories">Categories</a></li>
+
+            <li><a href="#products">Products</a></li>
+
+            <li><a href="#features">Why Us</a></li>
+
+            <li><a href="#newsletter">Newsletter</a></li>
+
+        </ul>
+
+        <div class="nav-icons">
+
+            <!-- Search -->
+
+            <button id="searchBtn">
+
+                <i class="ri-search-line"></i>
+
+            </button>
+
+            <!-- Dark Mode -->
+
+            <button id="themeToggle">
+
+                <i class="ri-moon-line"></i>
+
+            </button>
+
+            <!-- Wishlist -->
+
+            <button
+                id="wishlistBtn"
+                class="icon-badge">
+
+                <i class="ri-heart-3-line"></i>
+
+                <span id="wishlistCount">
+
+                    0
+
+                </span>
+
+            </button>
+
+            <!-- Cart -->
+
+            <button
+                id="cartBtn"
+                class="icon-badge">
+
+                <i class="ri-shopping-cart-2-line"></i>
+
+                <span id="cartCount">
+
+                    0
+
+                </span>
+
+            </button>
+
+            <!-- Account -->
+
+            <button>
+
+                <i class="ri-user-line"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Mobile -->
+
+        <div class="menu-btn">
+
+            <i class="ri-menu-line"></i>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<main>
+
+<!--==========================
+    HERO
+===========================-->
+
+<section
+    class="hero"
+    id="home">
+
+    <div class="hero-left fade-up">
+
+        <span>
+
+            🔥 New Collection 2026
+
+        </span>
+
+        <h1>
+
+            Discover Your
+            Perfect Style Today.
+
+        </h1>
+
+        <p>
+
+            Explore thousands of premium products carefully selected to
+            bring elegance, innovation, and quality into your everyday life.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="#products"
+                class="btn primary">
+
+                Shop Now
+
+            </a>
+
+            <a
+                href="#categories"
+                class="btn secondary">
+
+                Browse Categories
+
+            </a>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+
+                <h2>10K+</h2>
+
+                <span>Happy Customers</span>
+
+            </div>
+
+            <div>
+
+                <h2>500+</h2>
+
+                <span>Products</span>
+
+            </div>
+
+            <div>
+
+                <h2>4.9★</h2>
+
+                <span>Customer Rating</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right fade-up">
+
+        <img
+            src="images/hero.png"
+            alt="Shopping Hero">
+
+    </div>
+
+</section>
+<!--==========================
+    CATEGORIES
+===========================-->
+
+<section
+    class="categories"
+    id="categories">
+
+    <div class="section-title">
+
+        <h2>Shop By Category</h2>
+
+        <a href="shop.html">
+
+            Browse All
+
+        </a>
+
+    </div>
+
+    <div class="category-grid">
+
+        <article class="category-card fade-up">
+
+            <i class="ri-t-shirt-2-line"></i>
+
+            <h3>Fashion</h3>
+
+            <p>250+ Products</p>
+
+        </article>
+
+        <article class="category-card fade-up">
+
+            <i class="ri-smartphone-line"></i>
+
+            <h3>Electronics</h3>
+
+            <p>180+ Products</p>
+
+        </article>
+
+        <article class="category-card fade-up">
+
+            <i class="ri-home-4-line"></i>
+
+            <h3>Home Living</h3>
+
+            <p>140+ Products</p>
+
+        </article>
+
+        <article class="category-card fade-up">
+
+            <i class="ri-gamepad-line"></i>
+
+            <h3>Gaming</h3>
+
+            <p>95+ Products</p>
+
+        </article>
+
+        <article class="category-card fade-up">
+
+            <i class="ri-footprint-line"></i>
+
+            <h3>Footwear</h3>
+
+            <p>120+ Products</p>
+
+        </article>
+
+        <article class="category-card fade-up">
+
+            <i class="ri-watch-line"></i>
+
+            <h3>Accessories</h3>
+
+            <p>210+ Products</p>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!--==========================
+    PRODUCTS
+===========================-->
+
+<section
+    class="products"
+    id="products">
+
+    <div class="section-title">
+
+        <h2>Trending Products</h2>
+
+        <a href="shop.html">
+
+            View All Products
+
+        </a>
+
+    </div>
+
+    <div class="product-grid">
+
+        <!-- Product 1 -->
+
+        <article
+            class="product-card fade-up"
+            data-id="1"
+            data-name="Minimal Sneakers"
+            data-price="89"
+            data-category="Footwear"
+            data-image="images/product1.png">
+
+            <div class="badge">
+
+                New
+
+            </div>
+
+            <div class="overlay"></div>
+
+            <img
+                src="images/product1.png"
+                alt="Minimal Sneakers">
+
+            <div class="product-info">
+
+                <span class="product-category">
+
+                    Footwear
+
+                </span>
+
+                <h3>
+
+                    Minimal Sneakers
+
+                </h3>
+
+                <div class="rating">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="price">
+
+                    $89
+
+                </p>
+
+                <div class="product-buttons">
+
+                    <button class="add-cart">
+
+                        <i class="ri-shopping-cart-line"></i>
+
+                        Add To Cart
+
+                    </button>
+
+                    <button class="quick-view">
+
+                        <i class="ri-eye-line"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Product 2 -->
+
+        <article
+            class="product-card fade-up"
+            data-id="2"
+            data-name="Wireless Headphones"
+            data-price="129"
+            data-category="Electronics"
+            data-image="images/product2.png">
+
+            <div class="badge sale">
+
+                Sale
+
+            </div>
+
+            <div class="overlay"></div>
+
+            <img
+                src="images/product2.png"
+                alt="Wireless Headphones">
+
+            <div class="product-info">
+
+                <span class="product-category">
+
+                    Electronics
+
+                </span>
+
+                <h3>
+
+                    Wireless Headphones
+
+                </h3>
+
+                <div class="rating">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="price">
+
+                    $129
+
+                </p>
+
+                <div class="product-buttons">
+
+                    <button class="add-cart">
+
+                        <i class="ri-shopping-cart-line"></i>
+
+                        Add To Cart
+
+                    </button>
+
+                    <button class="quick-view">
+
+                        <i class="ri-eye-line"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Product 3 -->
+
+        <article
+            class="product-card fade-up"
+            data-id="3"
+            data-name="Luxury Watch"
+            data-price="249"
+            data-category="Accessories"
+            data-image="images/product3.png">
+
+            <div class="overlay"></div>
+
+            <img
+                src="images/product3.png"
+                alt="Luxury Watch">
+
+            <div class="product-info">
+
+                <span class="product-category">
+
+                    Accessories
+
+                </span>
+
+                <h3>
+
+                    Luxury Watch
+
+                </h3>
+
+                <div class="rating">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="price">
+
+                    $249
+
+                </p>
+
+                <div class="product-buttons">
+
+                    <button class="add-cart">
+
+                        <i class="ri-shopping-cart-line"></i>
+
+                        Add To Cart
+
+                    </button>
+
+                    <button class="quick-view">
+
+                        <i class="ri-eye-line"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Product 4 -->
+
+        <article
+            class="product-card fade-up"
+            data-id="4"
+            data-name="Modern Backpack"
+            data-price="79"
+            data-category="Travel"
+            data-image="images/product4.png">
+
+            <div class="badge">
+
+                Hot
+
+            </div>
+
+            <div class="overlay"></div>
+
+            <img
+                src="images/product4.png"
+                alt="Modern Backpack">
+
+            <div class="product-info">
+
+                <span class="product-category">
+
+                    Travel
+
+                </span>
+
+                <h3>
+
+                    Modern Backpack
+
+                </h3>
+
+                <div class="rating">
+
+                    ★★★★★
+
+                </div>
+
+                <p class="price">
+
+                    $79
+
+                </p>
+
+                <div class="product-buttons">
+
+                    <button class="add-cart">
+
+                        <i class="ri-shopping-cart-line"></i>
+
+                        Add To Cart
+
+                    </button>
+
+                    <button class="quick-view">
+
+                        <i class="ri-eye-line"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+<!--==========================
+    PROMOTION
+===========================-->
+
+<section class="promo">
+
+    <div class="promo-content fade-up">
+
+        <span>LIMITED TIME OFFER</span>
+
+        <h2>Summer Collection 2026</h2>
+
+        <h1>Up To 70% OFF</h1>
+
+        <p>
+
+            Refresh your wardrobe with the latest fashion,
+            electronics and lifestyle products.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#products" class="btn primary">
+
+                Shop Deals
+
+            </a>
+
+            <a href="shop.html" class="btn secondary">
+
+                Explore More
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--==========================
+    FEATURES
+===========================-->
+
+<section
+    class="features"
+    id="features">
+
+    <div class="feature fade-up">
+
+        <i class="ri-truck-line"></i>
+
+        <h3>Free Shipping</h3>
+
+        <p>
+
+            Enjoy free worldwide shipping on qualifying orders.
+
+        </p>
+
+    </div>
+
+    <div class="feature fade-up">
+
+        <i class="ri-secure-payment-line"></i>
+
+        <h3>Secure Payments</h3>
+
+        <p>
+
+            Your payments are protected with industry-standard encryption.
+
+        </p>
+
+    </div>
+
+    <div class="feature fade-up">
+
+        <i class="ri-refresh-line"></i>
+
+        <h3>Easy Returns</h3>
+
+        <p>
+
+            Hassle-free returns within 30 days of purchase.
+
+        </p>
+
+    </div>
+
+    <div class="feature fade-up">
+
+        <i class="ri-customer-service-2-line"></i>
+
+        <h3>24/7 Support</h3>
+
+        <p>
+
+            Friendly customer support whenever you need assistance.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!--==========================
+    TESTIMONIALS
+===========================-->
+
+<section class="testimonial">
+
+    <h2>
+
+        Loved By Thousands
+
+    </h2>
+
+    <div class="testimonial-grid">
+
+        <article class="testimonial-card fade-up">
+
+            <img
+                src="images/customer1.jpg"
+                alt="Sarah Johnson">
+
+            <p>
+
+                "The quality exceeded my expectations.
+                Fast delivery and excellent customer service."
+
+            </p>
+
+            <h4>
+
+                Sarah Johnson
+
+            </h4>
+
+            <span>Fashion Enthusiast</span>
+
+        </article>
+
+        <article class="testimonial-card fade-up">
+
+            <img
+                src="images/customer2.jpg"
+                alt="Michael Brown">
+
+            <p>
+
+                "Shopping here has been effortless.
+                Everything arrived exactly as described."
+
+            </p>
+
+            <h4>
+
+                Michael Brown
+
+            </h4>
+
+            <span>Verified Buyer</span>
+
+        </article>
+
+        <article class="testimonial-card fade-up">
+
+            <img
+                src="images/customer3.jpg"
+                alt="Emily Carter">
+
+            <p>
+
+                "Beautiful products, amazing prices,
+                and the website feels incredibly premium."
+
+            </p>
+
+            <h4>
+
+                Emily Carter
+
+            </h4>
+
+            <span>Interior Designer</span>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!--==========================
+    NEWSLETTER
+===========================-->
+
+<section
+    class="newsletter"
+    id="newsletter">
+
+    <h2>
+
+        Join Our Community
+
+    </h2>
+
+    <p>
+
+        Subscribe and receive exclusive discounts,
+        new arrivals, and members-only offers.
+
+    </p>
+
+    <form>
+
+        <input
+            type="email"
+            placeholder="Enter your email address"
+            required>
+
+        <button>
+
+            Subscribe
+
+        </button>
+
+    </form>
+
+</section>
+
+</main>
+
+<!--==========================
+    FOOTER
+===========================-->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h2>NovaShop</h2>
+
+            <p>
+
+                Premium shopping made simple.
+                Bringing style, technology and convenience
+                together in one place.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <a href="#home">Home</a>
+
+            <a href="#categories">Categories</a>
+
+            <a href="#products">Products</a>
+
+            <a href="#newsletter">Newsletter</a>
+
+        </div>
+
+        <div>
+
+            <h3>Customer Care</h3>
+
+            <a href="#">Track Order</a>
+
+            <a href="#">Returns</a>
+
+            <a href="#">Shipping</a>
+
+            <a href="#">FAQs</a>
+
+        </div>
+
+        <div>
+
+            <h3>Contact</h3>
+
+            <p>Email: support@novashop.com</p>
+
+            <p>Phone: +1 (555) 123-4567</p>
+
+            <p>Open: Mon - Sun</p>
+
+        </div>
+
+        <div>
+
+            <h3>Follow Us</h3>
+
+            <div class="social-icons">
+
+                <i class="ri-facebook-circle-fill"></i>
+
+                <i class="ri-instagram-line"></i>
+
+                <i class="ri-twitter-x-line"></i>
+
+                <i class="ri-youtube-fill"></i>
+
+                <i class="ri-tiktok-fill"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+
+        © 2026 NovaShop. All Rights Reserved.
+
+    </div>
+
+</footer>
+<!--=================================
+    SEARCH MODAL
+==================================-->
+
+<div id="searchModal" class="modal">
+
+    <div class="modal-content">
+
+        <button class="close-modal">
+
+            <i class="ri-close-line"></i>
+
+        </button>
+
+        <h2>
+
+            Search Products
+
+        </h2>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for products...">
+
+        <div id="searchResults">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--=================================
+    PRODUCT QUICK VIEW
+==================================-->
+
+<div id="productModal" class="modal">
+
+    <div class="modal-content product-modal">
+
+        <button class="close-modal">
+
+            <i class="ri-close-line"></i>
+
+        </button>
+
+        <div class="modal-image">
+
+            <img
+                id="modalImage"
+                src=""
+                alt="Product">
+
+        </div>
+
+        <div class="modal-details">
+
+            <span id="modalCategory"></span>
+
+            <h2 id="modalTitle"></h2>
+
+            <div id="modalRating">
+
+                ★★★★★
+
+            </div>
+
+            <h3 id="modalPrice"></h3>
+
+            <p id="modalDescription">
+
+                Premium quality product made from the finest materials.
+
+            </p>
+
+            <button
+                id="modalCart"
+                class="btn primary">
+
+                Add To Cart
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--=================================
+    SHOPPING CART DRAWER
+==================================-->
+
+<aside
+    id="cartDrawer"
+    class="drawer">
+
+    <div class="drawer-header">
+
+        <h2>
+
+            Shopping Cart
+
+        </h2>
+
+        <button
+            id="closeCart">
+
+            <i class="ri-close-line"></i>
+
+        </button>
+
+    </div>
+
+    <div id="cartItems">
+
+        <p class="empty-message">
+
+            Your cart is empty.
+
+        </p>
+
+    </div>
+
+    <div class="drawer-footer">
+
+        <h3>
+
+            Total:
+            <span id="cartTotal">
+
+                $0.00
+
+            </span>
+
+        </h3>
+
+        <button class="btn primary">
+
+            Checkout
+
+        </button>
+
+    </div>
+
+</aside>
+
+<!--=================================
+    WISHLIST DRAWER
+==================================-->
+
+<aside
+    id="wishlistDrawer"
+    class="drawer">
+
+    <div class="drawer-header">
+
+        <h2>
+
+            Wishlist
+
+        </h2>
+
+        <button
+            id="closeWishlist">
+
+            <i class="ri-close-line"></i>
+
+        </button>
+
+    </div>
+
+    <div id="wishlistItems">
+
+        <p class="empty-message">
+
+            Your wishlist is empty.
+
+        </p>
+
+    </div>
+
+</aside>
+
+<!--=================================
+    OVERLAY
+==================================-->
+
+<div id="overlay"></div>
+
+<!--=================================
+    SCRIPTS
+==================================-->
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
