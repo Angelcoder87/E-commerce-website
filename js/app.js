@@ -1,277 +1,421 @@
 /*=========================================
-    NOVASHOP APP
+    NOVASHOP
 =========================================*/
 
-/*
-=========================================
-    SELECTORS
-=========================================
-*/
+document.addEventListener("DOMContentLoaded", () => {
 
-const navbar = document.querySelector(".navbar");
-
-const menuBtn = document.querySelector(".menu-btn");
-
-const navLinks = document.querySelector(".nav-links");
-
-const links = document.querySelectorAll(".nav-links a");
-
-const addButtons = document.querySelectorAll(".product-info button");
-
-const fadeElements = document.querySelectorAll(".fade-up");
-
-const newsletterForm = document.querySelector(".newsletter form");
-
-const newsletterInput = document.querySelector(".newsletter input");
-
-/*
-=========================================
-    MOBILE MENU
-=========================================
-*/
-
-menuBtn.addEventListener("click", () => {
-
-    navLinks.classList.toggle("active");
+    initializeApp();
 
 });
 
-/*
-=========================================
-    CLOSE MENU WHEN CLICKING A LINK
-=========================================
-*/
+function initializeApp(){
 
-links.forEach(link => {
+    setupNavigation();
 
-    link.addEventListener("click", () => {
+    setupBackToTop();
 
-        navLinks.classList.remove("active");
+    setupLoader();
 
-    });
+    setupCartButtons();
 
-});
+    setupWishlistButtons();
 
-/*
-=========================================
-    STICKY NAVBAR
-=========================================
-*/
+    setupQuickView();
 
-window.addEventListener("scroll", () => {
+    setupDrawers();
 
-    if(window.scrollY > 60){
+    setupSearch();
 
-        navbar.style.padding = "12px 30px";
+    setupTheme();
 
-        navbar.style.boxShadow = "0 10px 35px rgba(0,0,0,.15)";
-
-    }
-
-    else{
-
-        navbar.style.padding = "18px 35px";
-
-        navbar.style.boxShadow = "0 15px 40px rgba(0,0,0,.08)";
-
-    }
-
-});
-
-/*
-=========================================
-    SMOOTH SCROLL
-=========================================
-*/
-
-links.forEach(link=>{
-
-    link.addEventListener("click",(e)=>{
-
-        const href = link.getAttribute("href");
-
-        if(href.startsWith("#")){
-
-            e.preventDefault();
-
-            document.querySelector(href).scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-/*
-=========================================
-    SCROLL REVEAL
-=========================================
-*/
-
-const reveal = ()=>{
-
-    fadeElements.forEach(item=>{
-
-        const top = item.getBoundingClientRect().top;
-
-        if(top < window.innerHeight - 100){
-
-            item.classList.add("show");
-
-        }
-
-    });
+    setupRevealAnimations();
 
 }
 
-window.addEventListener("scroll", reveal);
+/*=========================================
+    NAVIGATION
+=========================================*/
 
-reveal();
+function setupNavigation(){
 
-/*
-=========================================
-    TOAST NOTIFICATION
-=========================================
-*/
+    const menuBtn = document.querySelector(".menu-btn");
 
-function showToast(message){
+    const navLinks = document.querySelector(".nav-links");
 
-    const toast = document.createElement("div");
+    if(menuBtn){
 
-    toast.className = "toast";
+        menuBtn.addEventListener("click",()=>{
 
-    toast.innerText = message;
-
-    toast.style.position = "fixed";
-
-    toast.style.bottom = "30px";
-
-    toast.style.right = "30px";
-
-    toast.style.padding = "15px 25px";
-
-    toast.style.background = "#6C63FF";
-
-    toast.style.color = "#fff";
-
-    toast.style.borderRadius = "15px";
-
-    toast.style.boxShadow = "0 15px 30px rgba(0,0,0,.2)";
-
-    toast.style.zIndex = "9999";
-
-    toast.style.animation = "fadeIn .4s";
-
-    document.body.appendChild(toast);
-
-    setTimeout(()=>{
-
-        toast.remove();
-
-    },2500);
-
-}
-
-/*
-=========================================
-    CART
-=========================================
-*/
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-addButtons.forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        cart.push({
-
-            product:"Sample Product"
+            navLinks.classList.toggle("active");
 
         });
 
-        localStorage.setItem("cart",JSON.stringify(cart));
-
-        showToast("Product Added To Cart 🛒");
-
-    });
-
-});
-
-/*
-=========================================
-    NEWSLETTER
-=========================================
-*/
-
-newsletterForm.addEventListener("submit",(e)=>{
-
-    e.preventDefault();
-
-    const email = newsletterInput.value.trim();
-
-    if(email===""){
-
-        showToast("Enter your email.");
-
-        return;
-
     }
 
-    if(!email.includes("@")){
+}
 
-        showToast("Invalid Email");
+/*=========================================
+    BACK TO TOP
+=========================================*/
 
-        return;
+function setupBackToTop(){
 
-    }
+    const button = document.getElementById("backToTop");
 
-    showToast("Subscribed Successfully 🎉");
+    if(!button) return;
 
-    newsletterInput.value="";
+    window.addEventListener("scroll",()=>{
 
-});
+        if(window.scrollY>500){
 
-/*
-=========================================
-    ACTIVE NAVIGATION
-=========================================
-*/
+            button.classList.add("show");
 
-window.addEventListener("scroll",()=>{
+        }
 
-    let current="";
+        else{
 
-    document.querySelectorAll("section").forEach(section=>{
-
-        const top = section.offsetTop-120;
-
-        const height = section.clientHeight;
-
-        if(pageYOffset>=top){
-
-            current = section.getAttribute("id");
+            button.classList.remove("show");
 
         }
 
     });
 
-    links.forEach(link=>{
+    button.addEventListener("click",()=>{
 
-        link.classList.remove("active");
+        window.scrollTo({
 
-        if(link.getAttribute("href")==="#"+current){
+            top:0,
 
-            link.classList.add("active");
+            behavior:"smooth"
 
-        }
+        });
 
     });
 
-});
+}
 
-console.log("NovaShop Loaded Successfully 🚀");
+/*=========================================
+    LOADER
+=========================================*/
+
+function setupLoader(){
+
+    const loader = document.getElementById("loader");
+
+    if(!loader) return;
+
+    window.addEventListener("load",()=>{
+
+        loader.style.opacity="0";
+
+        setTimeout(()=>{
+
+            loader.style.display="none";
+
+        },500);
+
+    });
+
+}
+
+/*=========================================
+    CART BUTTONS
+=========================================*/
+
+function setupCartButtons(){
+
+    const buttons = document.querySelectorAll(".add-cart");
+
+    buttons.forEach(button=>{
+
+        button.addEventListener("click",()=>{
+
+            const product = button.closest(".product-card");
+
+            const id = Number(product.dataset.id);
+
+            addToCart(id);
+
+        });
+
+    });
+
+}
+
+/*=========================================
+    WISHLIST
+=========================================*/
+
+function setupWishlistButtons(){
+
+    const buttons = document.querySelectorAll(".add-wishlist");
+
+    buttons.forEach(button=>{
+
+        button.addEventListener("click",()=>{
+
+            const product = button.closest(".product-card");
+
+            const id = Number(product.dataset.id);
+
+            addToWishlist(id);
+
+        });
+
+    });
+
+}
+/*=========================================
+    QUICK VIEW MODAL
+=========================================*/
+
+function setupQuickView(){
+
+    const buttons = document.querySelectorAll(".quick-view");
+
+    const modal = document.getElementById("productModal");
+
+    if(!modal) return;
+
+    const image = document.getElementById("modalImage");
+    const title = document.getElementById("modalTitle");
+    const category = document.getElementById("modalCategory");
+    const price = document.getElementById("modalPrice");
+    const addButton = document.getElementById("modalCart");
+
+    buttons.forEach(button=>{
+
+        button.addEventListener("click",()=>{
+
+            const card = button.closest(".product-card");
+
+            const id = Number(card.dataset.id);
+
+            const product = products.find(p=>p.id===id);
+
+            if(!product) return;
+
+            image.src = product.image;
+            image.alt = product.name;
+            title.textContent = product.name;
+            category.textContent = product.category;
+            price.textContent = "$" + product.price;
+
+            addButton.onclick = ()=>{
+
+                addToCart(product.id);
+
+            };
+
+            modal.classList.add("show");
+
+        });
+
+    });
+
+}
+
+/*=========================================
+    SEARCH
+=========================================*/
+
+function setupSearch(){
+
+    const openBtn = document.getElementById("searchBtn");
+
+    const modal = document.getElementById("searchModal");
+
+    const input = document.getElementById("searchInput");
+
+    const results = document.getElementById("searchResults");
+
+    if(!modal || !input) return;
+
+    openBtn?.addEventListener("click",()=>{
+
+        modal.classList.add("show");
+
+        input.focus();
+
+    });
+
+    input.addEventListener("input",()=>{
+
+        const value = input.value.toLowerCase().trim();
+
+        results.innerHTML="";
+
+        if(value==="") return;
+
+        const filtered = products.filter(product=>{
+
+            return product.name.toLowerCase().includes(value)
+                || product.category.toLowerCase().includes(value);
+
+        });
+
+        if(filtered.length===0){
+
+            results.innerHTML="<p>No products found.</p>";
+
+            return;
+
+        }
+
+        filtered.forEach(product=>{
+
+            results.innerHTML += `
+
+            <div class="search-item">
+
+                <img src="${product.image}" alt="${product.name}">
+
+                <div>
+
+                    <h4>${product.name}</h4>
+
+                    <p>$${product.price}</p>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    });
+
+}
+
+/*=========================================
+    DRAWERS
+=========================================*/
+
+function setupDrawers(){
+
+    const cartButton = document.getElementById("cartBtn");
+
+    const wishlistButton = document.getElementById("wishlistBtn");
+
+    const cartDrawer = document.getElementById("cartDrawer");
+
+    const wishlistDrawer = document.getElementById("wishlistDrawer");
+
+    const overlay = document.getElementById("overlay");
+
+    cartButton?.addEventListener("click",()=>{
+
+        cartDrawer.classList.add("open");
+
+        overlay.classList.add("show");
+
+    });
+
+    wishlistButton?.addEventListener("click",()=>{
+
+        wishlistDrawer.classList.add("open");
+
+        overlay.classList.add("show");
+
+    });
+
+    document.getElementById("closeCart")?.addEventListener("click",closeEverything);
+
+    document.getElementById("closeWishlist")?.addEventListener("click",closeEverything);
+
+    overlay?.addEventListener("click",closeEverything);
+
+}
+
+/*=========================================
+    CLOSE EVERYTHING
+=========================================*/
+
+function closeEverything(){
+
+    document.querySelectorAll(".drawer").forEach(drawer=>{
+
+        drawer.classList.remove("open");
+
+    });
+
+    document.querySelectorAll(".modal").forEach(modal=>{
+
+        modal.classList.remove("show");
+
+    });
+
+    document.getElementById("overlay")?.classList.remove("show");
+
+}
+
+/*=========================================
+    DARK MODE
+=========================================*/
+
+function setupTheme(){
+
+    const button = document.getElementById("themeToggle");
+
+    if(!button) return;
+
+    const saved = localStorage.getItem("theme");
+
+    if(saved==="dark"){
+
+        document.body.classList.add("dark");
+
+    }
+
+    button.addEventListener("click",()=>{
+
+        document.body.classList.toggle("dark");
+
+        localStorage.setItem(
+
+            "theme",
+
+            document.body.classList.contains("dark")
+                ? "dark"
+                : "light"
+
+        );
+
+    });
+
+}
+
+/*=========================================
+    SCROLL REVEAL
+=========================================*/
+
+function setupRevealAnimations(){
+
+    const elements = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver(entries=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },{
+
+        threshold:.15
+
+    });
+
+    elements.forEach(element=>{
+
+        observer.observe(element);
+
+    });
+
+}

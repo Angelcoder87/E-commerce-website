@@ -363,3 +363,222 @@
     font-size:.9rem;
 
 }
+/*==========================================
+    CART ITEMS
+==========================================*/
+
+.cart-item{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.cart-item img{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+}
+
+.cart-details{
+
+    flex:1;
+
+}
+
+.cart-details h4{
+
+    margin-bottom:6px;
+
+}
+
+.quantity-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:10px;
+
+}
+
+.quantity-controls button{
+
+    width:32px;
+
+    height:32px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+.remove-item{
+
+    border:none;
+
+    background:none;
+
+    color:#ef4444;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+}
+/*==========================================
+    WISHLIST ITEMS
+==========================================*/
+
+.wishlist-item{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.wishlist-item img{
+
+    width:80px;
+
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+}
+
+.wishlist-details{
+
+    flex:1;
+
+}
+
+.wishlist-details h4{
+
+    margin-bottom:6px;
+
+}
+
+.wishlist-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+.wishlist-actions button{
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.wishlist-actions button:first-child{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.wishlist-actions .remove{
+
+    background:#ef4444;
+
+    color:#fff;
+
+}
+
+.wishlist-actions button:hover{
+
+    transform:translateY(-2px);
+
+}
+/*==========================================
+    SEARCH RESULTS
+==========================================*/
+
+.search-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-item:hover{
+
+    background:#f8fafc;
+
+}
+
+.search-item img{
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+.search-item h4{
+
+    margin-bottom:5px;
+
+}
