@@ -1,4 +1,4 @@
-/*==========================================
+//*==========================================
     STYLE EXTENSION
     NovaShop Premium UI
 ==========================================*/
@@ -13,7 +13,7 @@
 
     inset:0;
 
-    background:#ffffff;
+    background:var(--background);
 
     display:flex;
 
@@ -41,21 +41,19 @@
 
     border-radius:50%;
 
-    border:8px solid #ececec;
+    border:8px solid var(--border);
 
     border-top:8px solid var(--primary);
 
     animation:spin 1s linear infinite;
 
-    margin:auto;
-
-    margin-bottom:25px;
+    margin:0 auto 25px;
 
 }
 
 .loader-content h1{
 
-    font-family:"Outfit";
+    font-family:'Outfit',sans-serif;
 
     font-size:2.4rem;
 
@@ -65,9 +63,19 @@
 
 .loader-content p{
 
-    color:var(--gray);
+    color:var(--text-light);
 
     margin-top:10px;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
 
 }
 
@@ -92,17 +100,20 @@
     border-radius:50%;
 
     background:linear-gradient(
-        135deg,
-        var(--primary),
-        var(--accent));
 
-    color:white;
+        135deg,
+
+        var(--primary),
+
+        var(--primary-dark)
+
+    );
+
+    color:#fff;
 
     font-size:1.5rem;
 
     cursor:pointer;
-
-    box-shadow:0 20px 40px rgba(0,0,0,.2);
 
     display:flex;
 
@@ -110,11 +121,13 @@
 
     align-items:center;
 
+    box-shadow:var(--shadow);
+
     opacity:0;
 
     visibility:hidden;
 
-    transition:.35s;
+    transition:var(--transition);
 
     z-index:1000;
 
@@ -135,7 +148,7 @@
 }
 
 /*==============================
-    NAV ICON BUTTONS
+    NAVIGATION ICON BUTTONS
 ==============================*/
 
 .nav-icons button{
@@ -148,7 +161,7 @@
 
     border-radius:50%;
 
-    background:white;
+    background:var(--surface);
 
     display:flex;
 
@@ -160,7 +173,7 @@
 
     cursor:pointer;
 
-    transition:.35s;
+    transition:var(--transition);
 
     position:relative;
 
@@ -172,14 +185,14 @@
 
     background:var(--primary);
 
-    color:white;
+    color:#fff;
 
     transform:translateY(-5px);
 
 }
 
 /*==============================
-    BADGES
+    ICON BADGES
 ==============================*/
 
 .icon-badge span{
@@ -196,9 +209,9 @@
 
     border-radius:50%;
 
-    background:#ff4757;
+    background:var(--danger);
 
-    color:white;
+    color:#fff;
 
     font-size:.7rem;
 
@@ -220,29 +233,33 @@
 
     display:flex;
 
-    gap:35px;
+    flex-wrap:wrap;
+
+    gap:30px;
 
     margin-top:45px;
-
-    flex-wrap:wrap;
 
 }
 
 .hero-stats div{
 
-    background:white;
+    min-width:120px;
 
-    padding:20px;
+    background:rgba(255,255,255,.85);
 
-    border-radius:20px;
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    padding:22px;
+
+    border-radius:18px;
 
     box-shadow:var(--shadow);
 
-    min-width:120px;
-
     text-align:center;
 
-    transition:.35s;
+    transition:var(--transition);
 
 }
 
@@ -256,7 +273,7 @@
 
     color:var(--primary);
 
-    font-family:"Outfit";
+    font-family:'Outfit',sans-serif;
 
     margin-bottom:8px;
 
@@ -264,21 +281,21 @@
 
 .hero-stats span{
 
-    color:var(--gray);
+    color:var(--text-light);
 
     font-size:.9rem;
 
 }
 
 /*==============================
-    PRODUCT CATEGORY
+    PRODUCT DETAILS
 ==============================*/
 
 .product-category{
 
     display:inline-block;
 
-    color:var(--primary);
+    color:var(--secondary);
 
     font-size:.85rem;
 
@@ -288,13 +305,9 @@
 
 }
 
-/*==============================
-    PRODUCT RATING
-==============================*/
-
 .rating{
 
-    color:#FFD43B;
+    color:#F5B301;
 
     letter-spacing:3px;
 
@@ -326,19 +339,21 @@
 
     width:56px;
 
+    border:none;
+
     border-radius:15px;
 
     background:var(--dark);
 
-    color:white;
+    color:#fff;
 
-    transition:.35s;
+    transition:var(--transition);
 
 }
 
 .quick-view:hover{
 
-    background:var(--accent);
+    background:var(--primary);
 
 }
 
@@ -358,11 +373,12 @@
 
 .testimonial-card span{
 
-    color:var(--gray);
+    color:var(--text-light);
 
     font-size:.9rem;
 
 }
+
 /*==========================================
     CART ITEMS
 ==========================================*/
@@ -379,7 +395,7 @@
 
     padding-bottom:20px;
 
-    border-bottom:1px solid #ececec;
+    border-bottom:1px solid var(--border);
 
 }
 
@@ -404,6 +420,8 @@
 .cart-details h4{
 
     margin-bottom:6px;
+
+    color:var(--text);
 
 }
 
@@ -443,13 +461,14 @@
 
     background:none;
 
-    color:#ef4444;
+    color:var(--danger);
 
     font-size:1.2rem;
 
     cursor:pointer;
 
 }
+
 /*==========================================
     WISHLIST ITEMS
 ==========================================*/
@@ -464,7 +483,7 @@
 
     padding-bottom:20px;
 
-    border-bottom:1px solid #ececec;
+    border-bottom:1px solid var(--border);
 
 }
 
@@ -490,6 +509,8 @@
 
     margin-bottom:6px;
 
+    color:var(--text);
+
 }
 
 .wishlist-actions{
@@ -512,7 +533,7 @@
 
     cursor:pointer;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
@@ -526,7 +547,7 @@
 
 .wishlist-actions .remove{
 
-    background:#ef4444;
+    background:var(--danger);
 
     color:#fff;
 
@@ -534,12 +555,168 @@
 
 .wishlist-actions button:hover{
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 
 }
 /*==========================================
     SEARCH RESULTS
 ==========================================*/
+
+/*==========================================
+    SEARCH MODAL
+==========================================*/
+
+.search-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(33,6,53,.75);
+
+    backdrop-filter:blur(18px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:120px 20px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.4s;
+
+    z-index:5000;
+
+}
+
+.search-modal.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.search-box{
+
+    width:min(900px,100%);
+
+    background:var(--surface);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:0 30px 80px rgba(33,6,53,.25);
+
+    transform:translateY(-40px);
+
+    transition:.4s;
+
+}
+
+.search-modal.show .search-box{
+
+    transform:translateY(0);
+
+}
+
+/*==========================================
+    SEARCH HEADER
+==========================================*/
+
+.search-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:25px 30px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.search-header i{
+
+    font-size:1.5rem;
+
+    color:var(--primary);
+
+}
+
+.search-header input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:1.05rem;
+
+    font-family:'Poppins',sans-serif;
+
+    color:var(--text);
+
+}
+
+.search-header input::placeholder{
+
+    color:var(--text-light);
+
+}
+
+.search-close{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.search-close:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================
+    SEARCH RESULTS
+==========================================*/
+
+.search-results{
+
+    max-height:520px;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
 
 .search-item{
 
@@ -547,38 +724,594 @@
 
     align-items:center;
 
-    gap:15px;
+    gap:18px;
 
-    padding:12px;
+    padding:16px;
 
-    border-radius:12px;
+    border-radius:18px;
 
     cursor:pointer;
 
-    transition:.3s;
+    transition:var(--transition);
 
 }
 
 .search-item:hover{
 
-    background:#f8fafc;
+    background:var(--background);
+
+    transform:translateX(6px);
 
 }
 
 .search-item img{
 
-    width:60px;
+    width:80px;
 
-    height:60px;
+    height:80px;
 
     object-fit:cover;
 
-    border-radius:10px;
+    border-radius:16px;
 
 }
 
-.search-item h4{
+.search-info{
 
-    margin-bottom:5px;
+    flex:1;
+
+}
+
+.search-info h4{
+
+    font-family:'Outfit',sans-serif;
+
+    font-size:1.15rem;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.search-category{
+
+    color:var(--secondary);
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.search-price{
+
+    margin-top:8px;
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+/*==========================================
+    EMPTY SEARCH
+==========================================*/
+
+.search-empty{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+    color:var(--text-light);
+
+}
+
+.search-empty i{
+
+    display:block;
+
+    font-size:4rem;
+
+    margin-bottom:20px;
+
+    color:var(--primary);
+
+}
+
+/*==========================================
+    DARK MODE
+==========================================*/
+
+body.dark .search-box{
+
+    background:var(--surface);
+
+}
+
+body.dark .search-item:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+body.dark .search-header{
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+body.dark .search-close{
+
+    background:rgba(255,255,255,.08);
+
+    color:var(--text);
+
+}
+
+body.dark .search-close:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+/*==========================================
+    CART DRAWER
+==========================================*/
+
+/*==========================================
+    DRAWERS
+==========================================*/
+
+.drawer{
+
+    position:fixed;
+
+    top:0;
+
+    right:-460px;
+
+    width:440px;
+
+    max-width:100%;
+
+    height:100vh;
+
+    background:var(--surface);
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:-20px 0 60px rgba(33,6,53,.18);
+
+    transition:.45s ease;
+
+    z-index:6000;
+
+}
+
+.drawer.open{
+
+    right:0;
+
+}
+
+/*==========================================
+    DRAWER HEADER
+==========================================*/
+
+.cart-header,
+.wishlist-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.cart-header h2,
+.wishlist-header h2{
+
+    font-family:'Outfit',sans-serif;
+
+    font-size:1.5rem;
+
+    color:var(--text);
+
+}
+
+.close-cart,
+.close-wishlist{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.close-cart:hover,
+.close-wishlist:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================
+    DRAWER CONTENT
+==========================================*/
+
+.cart-items,
+.wishlist-items{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+/*==========================================
+    CART ITEM
+==========================================*/
+
+.cart-item{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.cart-item img{
+
+    width:95px;
+
+    height:95px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+}
+
+.cart-details{
+
+    flex:1;
+
+}
+
+.cart-details h4{
+
+    font-family:'Outfit',sans-serif;
+
+    color:var(--text);
+
+    margin-bottom:8px;
+
+}
+
+.cart-price{
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+/*==========================================
+    QUANTITY CONTROLS
+==========================================*/
+
+.quantity{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.quantity button{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.quantity button:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.remove-item{
+
+    margin-top:10px;
+
+    border:none;
+
+    background:none;
+
+    color:var(--danger);
+
+    cursor:pointer;
+
+    font-size:.9rem;
+
+}
+
+/*==========================================
+    DRAWER FOOTER
+==========================================*/
+
+.cart-footer,
+.wishlist-footer{
+
+    padding:25px;
+
+    border-top:1px solid var(--border);
+
+}
+
+.cart-summary{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:16px;
+
+    color:var(--text);
+
+}
+
+.cart-total{
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+}
+
+.checkout-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+
+        135deg,
+
+        var(--primary),
+
+        var(--primary-dark)
+
+    );
+
+    color:#fff;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.checkout-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.continue-shopping{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border:2px solid var(--primary);
+
+    border-radius:18px;
+
+    background:transparent;
+
+    color:var(--primary);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.continue-shopping:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/*==========================================
+    PAGE OVERLAY
+==========================================*/
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(33,6,53,.45);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:var(--transition);
+
+    z-index:5500;
+
+}
+
+.overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/*==========================================
+    SEARCH ACTIONS
+==========================================*/
+
+.search-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.search-actions button{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.search-actions button:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    transform:scale(1.08);
+
+}
+
+/*==========================================
+    DARK MODE
+==========================================*/
+
+body.dark .drawer{
+
+    background:var(--surface);
+
+}
+
+body.dark .cart-header,
+body.dark .wishlist-header,
+body.dark .cart-footer,
+body.dark .wishlist-footer{
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+body.dark .cart-item{
+
+    border-color:rgba(255,255,255,.08);
+
+}
+
+body.dark .quantity button,
+body.dark .close-cart,
+body.dark .close-wishlist{
+
+    background:rgba(255,255,255,.08);
+
+    color:var(--text);
+
+}
+
+body.dark .continue-shopping{
+
+    background:transparent;
 
 }

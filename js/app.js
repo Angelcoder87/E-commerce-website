@@ -1,6 +1,37 @@
-/*=========================================
+/*=========================================================
     NOVASHOP
-=========================================*/
+    Main Application Script
+=========================================================*/
+
+/*=========================================================
+    GLOBAL VARIABLES
+=========================================================*/
+
+const body = document.body;
+
+const navbar = document.querySelector(".navbar");
+
+const menuBtn = document.querySelector(".menu-btn");
+
+const navLinks = document.querySelector(".nav-links");
+
+const overlay = document.getElementById("overlay");
+
+const loader = document.getElementById("loader");
+
+const backToTop = document.getElementById("backToTop");
+
+const searchModal = document.getElementById("searchModal");
+
+const cartDrawer = document.getElementById("cartDrawer");
+
+const wishlistDrawer = document.getElementById("wishlistDrawer");
+
+const productModal = document.getElementById("productModal");
+
+/*=========================================================
+    INITIALIZATION
+=========================================================*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -12,35 +43,75 @@ function initializeApp(){
 
     setupNavigation();
 
-    setupBackToTop();
+    setupStickyNavbar();
 
     setupLoader();
 
-    setupCartButtons();
-
-    setupWishlistButtons();
-
-    setupQuickView();
-
-    setupDrawers();
-
-    setupSearch();
+    setupBackToTop();
 
     setupTheme();
 
-    setupRevealAnimations();
+    setupSearch();
+
+}
+/*=========================================================
+    HELPER FUNCTIONS
+=========================================================*/
+
+function openDrawer(drawer){
+
+    if(!drawer) return;
+
+    drawer.classList.add("open");
+
+    overlay?.classList.add("show");
 
 }
 
-/*=========================================
+function closeDrawer(drawer){
+
+    if(!drawer) return;
+
+    drawer.classList.remove("open");
+
+}
+
+function openModal(modal){
+
+    if(!modal) return;
+
+    modal.classList.add("show");
+
+    overlay?.classList.add("show");
+
+}
+
+function closeModal(modal){
+
+    if(!modal) return;
+
+    modal.classList.remove("show");
+
+}
+
+function closeEverything(){
+
+    closeDrawer(cartDrawer);
+
+    closeDrawer(wishlistDrawer);
+
+    closeModal(searchModal);
+
+    closeModal(productModal);
+
+    overlay?.classList.remove("show");
+
+}
+/*=========================================================
     NAVIGATION
-=========================================*/
+=========================================================*/
 
 function setupNavigation(){
-
-    const menuBtn = document.querySelector(".menu-btn");
-
-    const navLinks = document.querySelector(".nav-links");
 
     if(menuBtn){
 
@@ -53,34 +124,79 @@ function setupNavigation(){
     }
 
 }
+/*=========================================================
+    STICKY NAVBAR
+=========================================================*/
 
-/*=========================================
-    BACK TO TOP
-=========================================*/
+function setupStickyNavbar(){
 
-function setupBackToTop(){
-
-    const button = document.getElementById("backToTop");
-
-    if(!button) return;
+    if(!navbar) return;
 
     window.addEventListener("scroll",()=>{
 
-        if(window.scrollY>500){
+        if(window.scrollY>80){
 
-            button.classList.add("show");
+            navbar.classList.add("sticky");
 
         }
 
         else{
 
-            button.classList.remove("show");
+            navbar.classList.remove("sticky");
 
         }
 
     });
 
-    button.addEventListener("click",()=>{
+}
+/*=========================================================
+    LOADER
+=========================================================*/
+
+function setupLoader(){
+
+    if(!loader) return;
+
+    window.addEventListener("load",()=>{
+
+        loader.style.opacity="0";
+
+        loader.style.visibility="hidden";
+
+        setTimeout(()=>{
+
+            loader.remove();
+
+        },500);
+
+    });
+
+}
+/*=========================================================
+    BACK TO TOP
+=========================================================*/
+
+function setupBackToTop(){
+
+    if(!backToTop) return;
+
+    window.addEventListener("scroll",()=>{
+
+        if(window.scrollY>500){
+
+            backToTop.classList.add("show");
+
+        }
+
+        else{
+
+            backToTop.classList.remove("show");
+
+        }
+
+    });
+
+    backToTop.addEventListener("click",()=>{
 
         window.scrollTo({
 
@@ -93,266 +209,9 @@ function setupBackToTop(){
     });
 
 }
-
-/*=========================================
-    LOADER
-=========================================*/
-
-function setupLoader(){
-
-    const loader = document.getElementById("loader");
-
-    if(!loader) return;
-
-    window.addEventListener("load",()=>{
-
-        loader.style.opacity="0";
-
-        setTimeout(()=>{
-
-            loader.style.display="none";
-
-        },500);
-
-    });
-
-}
-
-/*=========================================
-    CART BUTTONS
-=========================================*/
-
-function setupCartButtons(){
-
-    const buttons = document.querySelectorAll(".add-cart");
-
-    buttons.forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-            const product = button.closest(".product-card");
-
-            const id = Number(product.dataset.id);
-
-            addToCart(id);
-
-        });
-
-    });
-
-}
-
-/*=========================================
-    WISHLIST
-=========================================*/
-
-function setupWishlistButtons(){
-
-    const buttons = document.querySelectorAll(".add-wishlist");
-
-    buttons.forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-            const product = button.closest(".product-card");
-
-            const id = Number(product.dataset.id);
-
-            addToWishlist(id);
-
-        });
-
-    });
-
-}
-/*=========================================
-    QUICK VIEW MODAL
-=========================================*/
-
-function setupQuickView(){
-
-    const buttons = document.querySelectorAll(".quick-view");
-
-    const modal = document.getElementById("productModal");
-
-    if(!modal) return;
-
-    const image = document.getElementById("modalImage");
-    const title = document.getElementById("modalTitle");
-    const category = document.getElementById("modalCategory");
-    const price = document.getElementById("modalPrice");
-    const addButton = document.getElementById("modalCart");
-
-    buttons.forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-            const card = button.closest(".product-card");
-
-            const id = Number(card.dataset.id);
-
-            const product = products.find(p=>p.id===id);
-
-            if(!product) return;
-
-            image.src = product.image;
-            image.alt = product.name;
-            title.textContent = product.name;
-            category.textContent = product.category;
-            price.textContent = "$" + product.price;
-
-            addButton.onclick = ()=>{
-
-                addToCart(product.id);
-
-            };
-
-            modal.classList.add("show");
-
-        });
-
-    });
-
-}
-
-/*=========================================
-    SEARCH
-=========================================*/
-
-function setupSearch(){
-
-    const openBtn = document.getElementById("searchBtn");
-
-    const modal = document.getElementById("searchModal");
-
-    const input = document.getElementById("searchInput");
-
-    const results = document.getElementById("searchResults");
-
-    if(!modal || !input) return;
-
-    openBtn?.addEventListener("click",()=>{
-
-        modal.classList.add("show");
-
-        input.focus();
-
-    });
-
-    input.addEventListener("input",()=>{
-
-        const value = input.value.toLowerCase().trim();
-
-        results.innerHTML="";
-
-        if(value==="") return;
-
-        const filtered = products.filter(product=>{
-
-            return product.name.toLowerCase().includes(value)
-                || product.category.toLowerCase().includes(value);
-
-        });
-
-        if(filtered.length===0){
-
-            results.innerHTML="<p>No products found.</p>";
-
-            return;
-
-        }
-
-        filtered.forEach(product=>{
-
-            results.innerHTML += `
-
-            <div class="search-item">
-
-                <img src="${product.image}" alt="${product.name}">
-
-                <div>
-
-                    <h4>${product.name}</h4>
-
-                    <p>$${product.price}</p>
-
-                </div>
-
-            </div>
-
-            `;
-
-        });
-
-    });
-
-}
-
-/*=========================================
-    DRAWERS
-=========================================*/
-
-function setupDrawers(){
-
-    const cartButton = document.getElementById("cartBtn");
-
-    const wishlistButton = document.getElementById("wishlistBtn");
-
-    const cartDrawer = document.getElementById("cartDrawer");
-
-    const wishlistDrawer = document.getElementById("wishlistDrawer");
-
-    const overlay = document.getElementById("overlay");
-
-    cartButton?.addEventListener("click",()=>{
-
-        cartDrawer.classList.add("open");
-
-        overlay.classList.add("show");
-
-    });
-
-    wishlistButton?.addEventListener("click",()=>{
-
-        wishlistDrawer.classList.add("open");
-
-        overlay.classList.add("show");
-
-    });
-
-    document.getElementById("closeCart")?.addEventListener("click",closeEverything);
-
-    document.getElementById("closeWishlist")?.addEventListener("click",closeEverything);
-
-    overlay?.addEventListener("click",closeEverything);
-
-}
-
-/*=========================================
-    CLOSE EVERYTHING
-=========================================*/
-
-function closeEverything(){
-
-    document.querySelectorAll(".drawer").forEach(drawer=>{
-
-        drawer.classList.remove("open");
-
-    });
-
-    document.querySelectorAll(".modal").forEach(modal=>{
-
-        modal.classList.remove("show");
-
-    });
-
-    document.getElementById("overlay")?.classList.remove("show");
-
-}
-
-/*=========================================
+/*=========================================================
     DARK MODE
-=========================================*/
+=========================================================*/
 
 function setupTheme(){
 
@@ -360,23 +219,23 @@ function setupTheme(){
 
     if(!button) return;
 
-    const saved = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem("theme");
 
-    if(saved==="dark"){
+    if(savedTheme==="dark"){
 
-        document.body.classList.add("dark");
+        body.classList.add("dark");
 
     }
 
     button.addEventListener("click",()=>{
 
-        document.body.classList.toggle("dark");
+        body.classList.toggle("dark");
 
         localStorage.setItem(
 
             "theme",
 
-            document.body.classList.contains("dark")
+            body.classList.contains("dark")
                 ? "dark"
                 : "light"
 
@@ -385,37 +244,295 @@ function setupTheme(){
     });
 
 }
+/*=========================================================
+    SEARCH
+=========================================================*/
 
-/*=========================================
-    SCROLL REVEAL
-=========================================*/
+function setupSearch(){
 
-function setupRevealAnimations(){
+    const searchBtn = document.getElementById("searchBtn");
 
-    const elements = document.querySelectorAll(".fade-up");
+    const closeBtn = document.getElementById("closeSearch");
 
-    const observer = new IntersectionObserver(entries=>{
+    const input = document.getElementById("searchInput");
 
-        entries.forEach(entry=>{
+    const results = document.getElementById("searchResults");
 
-            if(entry.isIntersecting){
+    if(!input || !results) return;
 
-                entry.target.classList.add("show");
+    /*-----------------------------
+        OPEN SEARCH
+    -----------------------------*/
 
-            }
+    searchBtn?.addEventListener("click",()=>{
+
+        openModal(searchModal);
+
+        input.focus();
+
+        renderSearchResults(products);
+
+    });
+
+    /*-----------------------------
+        CLOSE SEARCH
+    -----------------------------*/
+
+    closeBtn?.addEventListener("click",()=>{
+
+        closeModal(searchModal);
+
+        overlay?.classList.remove("show");
+
+    });
+
+    /*-----------------------------
+        LIVE SEARCH
+    -----------------------------*/
+
+    input.addEventListener("input",()=>{
+
+        const query = input.value
+            .trim()
+            .toLowerCase();
+
+        if(query===""){
+
+            renderSearchResults(products);
+
+            return;
+
+        }
+
+        const filtered = products.filter(product=>{
+
+            return (
+
+                product.name
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                product.category
+                    .toLowerCase()
+                    .includes(query)
+
+            );
 
         });
 
-    },{
-
-        threshold:.15
+        renderSearchResults(filtered);
 
     });
 
-    elements.forEach(element=>{
+}
+/*=========================================================
+    RENDER SEARCH RESULTS
+=========================================================*/
 
-        observer.observe(element);
+function renderSearchResults(items){
+
+    const results = document.getElementById("searchResults");
+
+    if(!results) return;
+
+    if(items.length===0){
+
+        results.innerHTML=`
+
+            <div class="search-empty">
+
+                <i class="ri-search-eye-line"></i>
+
+                <h3>No Products Found</h3>
+
+                <p>
+
+                    Try another keyword.
+
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    const html = items.map(product=>`
+
+        <div
+            class="search-item"
+            data-id="${product.id}">
+
+            <img
+                src="${product.image}"
+                alt="${product.name}">
+
+            <div class="search-info">
+
+                <span class="search-category">
+
+                    ${product.category}
+
+                </span>
+
+                <h4>
+
+                    ${product.name}
+
+                </h4>
+
+                <div class="shop-rating">
+
+                    ${"★".repeat(product.rating)}
+
+                </div>
+
+                <div class="search-price">
+
+                    $${product.price}
+
+                </div>
+
+            </div>
+
+            <div class="search-actions">
+
+                <button
+                    class="search-cart"
+                    data-id="${product.id}">
+
+                    <i class="ri-shopping-cart-line"></i>
+
+                </button>
+
+                <button
+                    class="search-heart"
+                    data-id="${product.id}">
+
+                    <i class="ri-heart-3-line"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+    results.innerHTML = html;
+
+    attachSearchEvents();
+
+}
+/*=========================================================
+    SEARCH EVENTS
+=========================================================*/
+
+function attachSearchEvents(){
+
+    document
+        .querySelectorAll(".search-cart")
+        .forEach(button=>{
+
+            button.addEventListener("click",()=>{
+
+                addToCart(
+
+                    Number(button.dataset.id)
+
+                );
+
+            });
+
+        });
+
+    document
+        .querySelectorAll(".search-heart")
+        .forEach(button=>{
+
+            button.addEventListener("click",()=>{
+
+                addToWishlist(
+
+                    Number(button.dataset.id)
+
+                );
+
+            });
+
+        });
+
+    document
+        .querySelectorAll(".search-item")
+        .forEach(item=>{
+
+            item.addEventListener("click",(e)=>{
+
+                if(
+
+                    e.target.closest("button")
+
+                ) return;
+
+                const id = Number(
+
+                    item.dataset.id
+
+                );
+
+                openQuickView(id);
+
+            });
+
+        });
+
+}
+/*=========================================================
+    KEYBOARD SHORTCUTS
+=========================================================*/
+
+function setupKeyboard(){
+
+    document.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Escape"){
+
+            closeEverything();
+
+        }
+
+        if(
+
+            (e.ctrlKey || e.metaKey)
+
+            &&
+
+            e.key.toLowerCase()==="k"
+
+        ){
+
+            e.preventDefault();
+
+            openModal(searchModal);
+
+            document
+                .getElementById("searchInput")
+                ?.focus();
+
+        }
 
     });
+
+    overlay?.addEventListener(
+
+        "click",
+
+        closeEverything
+
+    );
 
 }
