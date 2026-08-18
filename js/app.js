@@ -10,23 +10,16 @@
 const body = document.body;
 
 const navbar = document.querySelector(".navbar");
-
 const menuBtn = document.querySelector(".menu-btn");
-
 const navLinks = document.querySelector(".nav-links");
 
 const overlay = document.getElementById("overlay");
-
 const loader = document.getElementById("loader");
-
 const backToTop = document.getElementById("backToTop");
 
 const searchModal = document.getElementById("searchModal");
-
 const cartDrawer = document.getElementById("cartDrawer");
-
 const wishlistDrawer = document.getElementById("wishlistDrawer");
-
 const productModal = document.getElementById("productModal");
 
 /*=========================================================
@@ -42,18 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
 function initializeApp(){
 
     setupNavigation();
-
     setupStickyNavbar();
-
     setupLoader();
-
     setupBackToTop();
-
     setupTheme();
 
-    setupSearch();
+    setupCart();
+    setupAnimations();
 
 }
+
 /*=========================================================
     HELPER FUNCTIONS
 =========================================================*/
@@ -64,7 +55,9 @@ function openDrawer(drawer){
 
     drawer.classList.add("open");
 
-    overlay?.classList.add("show");
+    if(overlay){
+        overlay.classList.add("show");
+    }
 
 }
 
@@ -82,7 +75,9 @@ function openModal(modal){
 
     modal.classList.add("show");
 
-    overlay?.classList.add("show");
+    if(overlay){
+        overlay.classList.add("show");
+    }
 
 }
 
@@ -97,16 +92,17 @@ function closeModal(modal){
 function closeEverything(){
 
     closeDrawer(cartDrawer);
-
     closeDrawer(wishlistDrawer);
 
     closeModal(searchModal);
-
     closeModal(productModal);
 
-    overlay?.classList.remove("show");
+    if(overlay){
+        overlay.classList.remove("show");
+    }
 
 }
+
 /*=========================================================
     NAVIGATION
 =========================================================*/
@@ -123,7 +119,18 @@ function setupNavigation(){
 
     }
 
+    document.querySelectorAll(".nav-links a").forEach(link=>{
+
+        link.addEventListener("click",()=>{
+
+            navLinks.classList.remove("active");
+
+        });
+
+    });
+
 }
+
 /*=========================================================
     STICKY NAVBAR
 =========================================================*/
@@ -134,13 +141,11 @@ function setupStickyNavbar(){
 
     window.addEventListener("scroll",()=>{
 
-        if(window.scrollY>80){
+        if(window.scrollY > 80){
 
             navbar.classList.add("sticky");
 
-        }
-
-        else{
+        }else{
 
             navbar.classList.remove("sticky");
 
@@ -149,6 +154,7 @@ function setupStickyNavbar(){
     });
 
 }
+
 /*=========================================================
     LOADER
 =========================================================*/
@@ -160,7 +166,6 @@ function setupLoader(){
     window.addEventListener("load",()=>{
 
         loader.style.opacity="0";
-
         loader.style.visibility="hidden";
 
         setTimeout(()=>{
@@ -172,6 +177,7 @@ function setupLoader(){
     });
 
 }
+
 /*=========================================================
     BACK TO TOP
 =========================================================*/
@@ -186,9 +192,7 @@ function setupBackToTop(){
 
             backToTop.classList.add("show");
 
-        }
-
-        else{
+        }else{
 
             backToTop.classList.remove("show");
 
@@ -201,7 +205,6 @@ function setupBackToTop(){
         window.scrollTo({
 
             top:0,
-
             behavior:"smooth"
 
         });
@@ -209,6 +212,7 @@ function setupBackToTop(){
     });
 
 }
+
 /*=========================================================
     DARK MODE
 =========================================================*/
@@ -236,14 +240,15 @@ function setupTheme(){
             "theme",
 
             body.classList.contains("dark")
-                ? "dark"
-                : "light"
+            ? "dark"
+            : "light"
 
         );
 
     });
 
 }
+
 /*=========================================================
     SEARCH
 =========================================================*/
@@ -251,20 +256,68 @@ function setupTheme(){
 function setupSearch(){
 
     const searchBtn = document.getElementById("searchBtn");
-
     const closeBtn = document.getElementById("closeSearch");
-
     const input = document.getElementById("searchInput");
-
     const results = document.getElementById("searchResults");
 
-    if(!input || !results) return;
+    if(!searchBtn || !input || !results) return;
+
+    searchBtn.addEventListener("click",()=>{
+
+        openModal(searchModal);
+
+        input.focus();
+
+        if(typeof renderSearchResults==="function"){
+
+            renderSearchResults(products);
+
+        }
+
+    });
+
+    if(closeBtn){
+
+        closeBtn.addEventListener("click",()=>{
+
+            closeModal(searchModal);
+
+            if(overlay){
+                overlay.classList.remove("show");
+            }
+
+        });
+
+    }
+
+}
+
+   /*=========================================================
+    SEARCH
+=========================================================*/
+
+function setupSearch(){
+
+    const searchBtn = document.getElementById("searchBtn");
+    const closeBtn = document.getElementById("closeSearch");
+    const input = document.getElementById("searchInput");
+    const results = document.getElementById("searchResults");
+
+    if(!searchBtn || !input || !results) return;
+
+    if(typeof products === "undefined"){
+
+        console.warn("Products array not found.");
+
+        return;
+
+    }
 
     /*-----------------------------
         OPEN SEARCH
     -----------------------------*/
 
-    searchBtn?.addEventListener("click",()=>{
+    searchBtn.addEventListener("click",()=>{
 
         openModal(searchModal);
 
@@ -306,7 +359,7 @@ function setupSearch(){
 
         const filtered = products.filter(product=>{
 
-            return (
+            return(
 
                 product.name
                     .toLowerCase()
@@ -327,6 +380,7 @@ function setupSearch(){
     });
 
 }
+
 /*=========================================================
     RENDER SEARCH RESULTS
 =========================================================*/
@@ -337,7 +391,7 @@ function renderSearchResults(items){
 
     if(!results) return;
 
-    if(items.length===0){
+    if(!items || items.length===0){
 
         results.innerHTML=`
 
@@ -347,11 +401,7 @@ function renderSearchResults(items){
 
                 <h3>No Products Found</h3>
 
-                <p>
-
-                    Try another keyword.
-
-                </p>
+                <p>Try another keyword.</p>
 
             </div>
 
@@ -361,7 +411,7 @@ function renderSearchResults(items){
 
     }
 
-    const html = items.map(product=>`
+    results.innerHTML = items.map(product=>`
 
         <div
             class="search-item"
@@ -385,9 +435,9 @@ function renderSearchResults(items){
 
                 </h4>
 
-                <div class="shop-rating">
+                <div class="rating">
 
-                    ${"★".repeat(product.rating)}
+                    ${"★".repeat(product.rating || 5)}
 
                 </div>
 
@@ -423,11 +473,10 @@ function renderSearchResults(items){
 
     `).join("");
 
-    results.innerHTML = html;
-
     attachSearchEvents();
 
 }
+
 /*=========================================================
     SEARCH EVENTS
 =========================================================*/
@@ -438,13 +487,15 @@ function attachSearchEvents(){
         .querySelectorAll(".search-cart")
         .forEach(button=>{
 
-            button.addEventListener("click",()=>{
+            button.addEventListener("click",(e)=>{
 
-                addToCart(
+                e.stopPropagation();
 
-                    Number(button.dataset.id)
+                if(typeof addToCart==="function"){
 
-                );
+                    addToCart(Number(button.dataset.id));
+
+                }
 
             });
 
@@ -454,13 +505,15 @@ function attachSearchEvents(){
         .querySelectorAll(".search-heart")
         .forEach(button=>{
 
-            button.addEventListener("click",()=>{
+            button.addEventListener("click",(e)=>{
 
-                addToWishlist(
+                e.stopPropagation();
 
-                    Number(button.dataset.id)
+                if(typeof addToWishlist==="function"){
 
-                );
+                    addToWishlist(Number(button.dataset.id));
+
+                }
 
             });
 
@@ -470,27 +523,24 @@ function attachSearchEvents(){
         .querySelectorAll(".search-item")
         .forEach(item=>{
 
-            item.addEventListener("click",(e)=>{
+            item.addEventListener("click",()=>{
 
-                if(
+                if(typeof openQuickView==="function"){
 
-                    e.target.closest("button")
+                    openQuickView(
 
-                ) return;
+                        Number(item.dataset.id)
 
-                const id = Number(
+                    );
 
-                    item.dataset.id
-
-                );
-
-                openQuickView(id);
+                }
 
             });
 
         });
 
 }
+
 /*=========================================================
     KEYBOARD SHORTCUTS
 =========================================================*/
@@ -527,12 +577,45 @@ function setupKeyboard(){
 
     });
 
-    overlay?.addEventListener(
+    overlay?.addEventListener("click",()=>{
 
-        "click",
+        closeEverything();
 
-        closeEverything
+    });
 
-    );
+}
+/*=========================================================
+    SCROLL ANIMATIONS
+=========================================================*/
+
+function setupAnimations(){
+
+    const fadeElements = document.querySelectorAll(".fade-up");
+
+    if(!fadeElements.length) return;
+
+    const observer = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, {
+        threshold: 0.15
+    });
+
+    fadeElements.forEach(element => {
+
+        observer.observe(element);
+
+    });
 
 }

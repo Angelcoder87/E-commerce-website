@@ -220,7 +220,44 @@ function renderCart() {
     }
 
 }
+/*==========================================
+    CART DRAWER
+==========================================*/
 
+function setupCart() {
+
+    const cartBtn = document.getElementById("cartBtn");
+    const closeCart = document.getElementById("closeCart");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const overlay = document.getElementById("overlay");
+    const continueShopping = document.querySelector(".continue-shopping");
+
+    if (!cartDrawer) return;
+
+    cartBtn?.addEventListener("click", () => {
+
+        cartDrawer.classList.add("open");
+        overlay?.classList.add("show");
+
+        renderCart();
+
+    });
+
+    closeCart?.addEventListener("click", () => {
+
+        cartDrawer.classList.remove("open");
+        overlay?.classList.remove("show");
+
+    });
+
+    continueShopping?.addEventListener("click", () => {
+
+        cartDrawer.classList.remove("open");
+        overlay?.classList.remove("show");
+
+    });
+
+}
 /*==========================================
     INIT
 ==========================================*/
